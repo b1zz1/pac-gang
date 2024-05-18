@@ -15,10 +15,10 @@ export default function Home() {
       }}
       padding="md"
     >
-      <AppShell.Header>
+      <AppShell.Header style={{filter: 'drop-shadow(0 4px 20px rgba(92, 96, 137, 0.16))'}}>
             <Header />
       </AppShell.Header>
-      <AppShell.Main>
+      <AppShell.Main bg="#F5F5FB">
         Main
       </AppShell.Main>
     </AppShell>
