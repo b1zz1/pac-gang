@@ -1,10 +1,12 @@
-import { Button } from "@mantine/core"
+import { Container, Stack, Button } from "@mantine/core"
 
 export default function Home() {
   return (
-    <div>
-      ola
-      <Button color="purple.1">dsad</Button>
-    </div>
+    <Container ta="center">
+      <Stack>
+        ola
+        <Button color={"purple.5"}>Botão</Button>
+      </Stack>
+    </Container>
   )
 }
