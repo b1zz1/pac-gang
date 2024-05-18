@@ -1,25 +1,19 @@
-# Feito por Miguel Ricardo Buttendorf
-
 from flask import Flask, render_template, redirect, url_for, request, flash
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from src.api.db import get_db_connection, init_db
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), nullable=False, unique=True)
-    password = db.Column(db.String(150), nullable=False)
+# Inicialize o banco de dados SQLite
+init_db()
 
 
 @app.route('/')
 def index():
-    users = User.query.all()
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM users').fetchall()
+    conn.close()
     return render_template('index.html', users=users)
 
 
@@ -30,11 +24,16 @@ def register():
         password = request.form['password']
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
-        new_user = User(username=username, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-
-        flash('User registered successfully!')
+        conn = get_db_connection()
+        try:
+            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)',
+                         (username, hashed_password))
+            conn.commit()
+            flash(f'User {username} registered successfully!')  # Exibe o nome do usuário registrado
+        except Exception as e:
+            flash('Failed to register user. Error: {}'.format(str(e)))
+        finally:
+            conn.close()
         return redirect(url_for('index'))
     return render_template('register.html')
 
@@ -45,8 +44,11 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password, password):
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        conn.close()
+
+        if user and check_password_hash(user['password'], password):
             flash('Logged in successfully!')
             return redirect(url_for('index'))
         else:
@@ -56,12 +58,21 @@ def login():
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    user = User.query.get_or_404(id)
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (id,)).fetchone()
+    conn.close()
+
     if request.method == 'POST':
-        user.username = request.form['username']
-        if request.form['password']:
-            user.password = generate_password_hash(request.form['password'], method='pbkdf2:sha256')
-        db.session.commit()
+        username = request.form['username']
+        password = request.form['password']
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+
+        conn = get_db_connection()
+        conn.execute('UPDATE users SET username = ?, password = ? WHERE id = ?',
+                     (username, hashed_password, id))
+        conn.commit()
+        conn.close()
+
         flash('User updated successfully!')
         return redirect(url_for('index'))
     return render_template('update.html', user=user)
@@ -69,14 +80,15 @@ def update(id):
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    user = User.query.get_or_404(id)
-    db.session.delete(user)
-    db.session.commit()
+    conn = get_db_connection()
+    conn.execute('DELETE FROM users WHERE id = ?', (id,))
+    conn.commit()
+    conn.execute('VACUUM')  # Remove os IDs excluídos
+    conn.close()
     flash('User deleted successfully!')
     return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+    init_db()
     app.run(debug=True)
