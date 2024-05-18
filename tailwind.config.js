@@ -7,8 +7,21 @@ module.exports = {
   ],
   theme: {
     colors: {
-      'purple': '#7e5bef',
-      'gray-light': '#d3dce6',
+      'purple.1': '#F5F5FB',
+      'purple.2': '#DBDBEB',
+      'purple.3': '#E3E6FF',
+      'purple.4': '#939AFE',
+      'purple.5': '#5D6BFF',
+      'purple.6': '#5060FF',
+
+      'white.1': '#FFFFFF',
+      'white.2': '#F5F5F5',
+      'white.3': '#A9ABC2',
+      'white.4': '#4B4C57',
+      'white.5': '#2E2F34',
+
+      'error': '#FF3838',
+      'sucess': '#93D724',
     },
   },
 }

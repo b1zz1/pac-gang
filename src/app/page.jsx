@@ -1,7 +1,4 @@
-'use client'
-
-import { AppShell } from "@mantine/core"
-import Header from '@components/layout/Header'
+import { Container, Stack, Button, Input} from "@mantine/core"
 
 export default function Home() {
 
