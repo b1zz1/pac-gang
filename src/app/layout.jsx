@@ -15,6 +15,18 @@ export const metadata = {
 
 const theme = createTheme({
   colors: {
+    primaryColor: [
+      "#D9DDFE",
+      "#BEC4FE",
+      "#A2ABFE",
+      "#8792FF",
+      "#6B79FF",
+      "#5060FF",
+      "#3E4CCC",
+      "#2D3899",
+      "#1B2566",
+      "#0A1133"
+    ],
     purple: [
       "#F5F5FB",
       "#DBDBEB",
@@ -30,10 +42,9 @@ const theme = createTheme({
       "#F5F5F5",
       "#FFFFFF"
     ],
-    states: [
-      "#FF3838",
-      "#93D724"
-  ]}
+    error: ["#FF3838"],
+    sucess: ["#93D724"]
+  }
 });
 
 export default function RootLayout({ children }) {
