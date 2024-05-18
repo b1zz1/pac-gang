@@ -1,12 +1,26 @@
-import { Container, Stack, Button } from "@mantine/core"
+'use client'
+
+import { AppShell } from "@mantine/core"
+import Header from '@components/layout/Header'
 
 export default function Home() {
+
   return (
-    <Container ta="center">
-      <Stack>
-        ola
-        <Button color={"purple.5"}>Botão</Button>
-      </Stack>
-    </Container>
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{
+        width: 300,
+        breakpoint: 'sm',
+        // collapsed: { mobile: !opened },
+      }}
+      padding="md"
+    >
+      <AppShell.Header>
+            <Header />
+      </AppShell.Header>
+      <AppShell.Main>
+        Main
+      </AppShell.Main>
+    </AppShell>
   )
 }
