@@ -14,6 +14,7 @@ export const metadata = {
 }
 
 const theme = createTheme({
+  
   colors: {
     primaryColor: [
       "#D9DDFE",
@@ -27,6 +28,30 @@ const theme = createTheme({
       "#1B2566",
       "#0A1133"
     ],
+    secondaryColor: [
+      "#2E2F34",
+      "#4B4C57",
+      "#717280",
+      "#9193A5",
+      "#A9ABC2",
+      "#BDBDD1",
+      "#CFCFDE",
+      "#DBDBEB",
+      "#F5F5FB",
+      "#FFFFFF"
+    ],
+    terciaryColor: [
+      "#840000",
+      "#960000",
+      "#B20000",
+      "#CC1717",
+      "#DF1F1F",
+      "#EB2D2D",
+      "#FF3838",
+      "#FF5F5F",
+      "#FF8787",
+      "#FFB8B8"
+    ],
     purple: [
       "#F5F5FB",
       "#DBDBEB",
@@ -36,11 +61,11 @@ const theme = createTheme({
       "#5060FF"
     ],
     white: [
-      "#2E2F34",
-      "#4B4C57",
-      "#A9ABC2",
+      "#FFFFFF",
       "#F5F5F5",
-      "#FFFFFF"
+      "#A9ABC2",
+      "#4B4C57",
+      "#2E2F34",
     ],
     error: ["#FF3838"],
     sucess: ["#93D724"]
