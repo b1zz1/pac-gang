@@ -1,7 +1,10 @@
-import './globals.css'
 import { Montserrat } from 'next/font/google'
-import {MantineProvider, createTheme} from '@mantine/core';
 import { error } from 'console';
+
+import {MantineProvider, ColorSchemeScript, createTheme} from '@mantine/core';
+
+import './globals.css'
+import '@mantine/core/styles.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -27,19 +30,19 @@ const theme = createTheme({
       "#F5F5F5",
       "#FFFFFF"
     ],
-    estado: [
+    states: [
       "#FF3838",
       "#93D724"
-  ]
-  }
+  ]}
 });
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
+      <head><ColorSchemeScript /></head>
       <body className={montserrat.className}>
-        <MantineProvider theme={theme}>
-        <main>{children}</main>
+        <MantineProvider theme={theme} defaultColorScheme="light">
+          {children}
         </MantineProvider>
       </body>
     </html>
