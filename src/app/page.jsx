@@ -5,19 +5,6 @@ import Header from "@components/layout/Header";
 import Search from "@components/interface/Search";
 
 export default function Home() {
-<<<<<<< Updated upstream
-  return (
-    <Container className="bg" ta="center">
-      <Stack>
-        <div className="text-purple.5">
-        ola
-        </div>
-        <Button className="text-purple.4" color="terciaryColor">Cancel</Button>
-        <Input color="primaryColor"></Input >
-      </Stack>
-    </Container>
-  )
-=======
   let name = "Ana";
 
   return (
@@ -42,5 +29,4 @@ export default function Home() {
       </AppShell.Main>
     </AppShell>
   );
->>>>>>> Stashed changes
 }
