@@ -1,9 +1,7 @@
 import { Montserrat } from 'next/font/google'
-import { error } from 'console';
-
 import {MantineProvider, ColorSchemeScript, createTheme} from '@mantine/core';
 
-import './globals.css'
+import global from './globals.css'
 import '@mantine/core/styles.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -15,6 +13,8 @@ export const metadata = {
 
 const theme = createTheme({
   
+  fontFamily: 'Montserrat, sans-serif',
+
   colors: {
     primaryColor: [
       "#D9DDFE",
@@ -69,7 +69,7 @@ const theme = createTheme({
     ],
     error: ["#FF3838"],
     sucess: ["#93D724"]
-  }
+  },
 });
 
 export default function RootLayout({ children }) {
