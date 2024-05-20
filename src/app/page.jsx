@@ -15,17 +15,12 @@ export default function Home() {
         <Header />
       </AppShell.Header>
       <AppShell.Main className="flex flex-col items-center gap-8" bg="#F5F5FB">
-        <Stack gap={0} ta={"start"} className="w-fit pt-40">
+        <Stack gap={20} ta={"start"} className="w-fit pt-40">
           <div className="text-purple.6 text-5xl">
-            {" "}
-            Olá <b>{name}</b>,
+            Olá <b>{name}</b>,<br></br>O que vamos reparar hoje?
           </div>
-          <div className="text-purple.6 text-5xl">
-            {" "}
-            O que vamos reparar hoje?
-          </div>
+          <Search></Search>
         </Stack>
-        <Search></Search>
       </AppShell.Main>
     </AppShell>
   );
