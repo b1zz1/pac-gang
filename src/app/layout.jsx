@@ -1,5 +1,6 @@
 import { Montserrat } from 'next/font/google'
 import './globals.css'
+import { ConfigProvider } from 'antd'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -11,9 +12,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={montserrat.className}>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: montserrat.style.fontFamily,
+          }
+        }}>
+        <body className={montserrat.className}>
           {children}
-      </body>
-    </html>
+        </body>
+      </ConfigProvider>
+    </html >
   )
 }
