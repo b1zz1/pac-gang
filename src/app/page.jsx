@@ -2,7 +2,7 @@
 
 import Search from "@components/interface/Search";
 import ContentHeader from "@components/layout/ContentHeader";
-import { Layout, } from 'antd';
+import { Layout } from "antd";
 
 const { Header, Content, Footer } = Layout;
 
@@ -17,7 +17,7 @@ export default function Home() {
       <Content className="flex justify-center bg-purple.1 p-6 pt-20 h-full">
          <div className="flex flex-col w-fit gap-8">
           <div className="flex flex-col items-start w-fit text-purple.6 text-5xl">
-            <div>  Olá <b>{name}</b></div>
+            <div>  Olá <b>{name}</b>,</div>
             <div>o que vamos reparar hoje?</div>
           </div>
           <Search />
