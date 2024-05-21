@@ -3,13 +3,13 @@
 import { IconContext } from "react-icons";
 import { PiUserFill } from 'react-icons/pi'
 
-const Header = () => {
+const ContentHeader = () => {
 
     return (
-        <div className="h-12 w-full flex justify-center items-center bg-white.1 text-purple.6">
+        <div className="flex justify-center items-center text-purple.6">
             Header
         </div>
     )
 }
 
-export default Header
+export default ContentHeader
